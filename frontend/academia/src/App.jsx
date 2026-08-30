@@ -1,10 +1,10 @@
-import Componente from "./Componentes";
+import Login from "./components/Login";
 import "./App.css";
 
 function App() {
     return(
         <div className="background">
-            <Componente />
+            <Login />
         </div>
     )
 }

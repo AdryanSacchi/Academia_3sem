@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Botao from "./components/Botao";
+import Botao from "./Botao";
 
-function Componente() {
+function Login() {
     return (
         <div>
             <p className="fontGym">Titulo</p>
@@ -18,4 +18,4 @@ function Componente() {
     )
 }
 
-export default Componente;
+export default Login;

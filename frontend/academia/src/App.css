@@ -51,20 +51,3 @@
     border:  solid rgba(197, 14, 14, 0.26);
     border-radius: 15px;
 }
-
-.cardLogin button:hover {
-  background-color: #8f2021;
-  
-}
-
-.cardLogin button {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #d32023da;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background 0.5s;
-  cursor: pointer;
-
-}
