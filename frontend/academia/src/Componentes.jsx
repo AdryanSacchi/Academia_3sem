@@ -9,9 +9,9 @@ function Componente() {
 
             <div className="cardLogin">
                 <label className="textoCard">Email:</label>
-                <input  type="email" /><br />
+                <input type="email" /><br />
                 <label className="textoCard">Senha:</label>
-                <input type="senha" /><br />
+                <input type="password" /><br />
                 <Botao variante="primario">Entrar</Botao>
             </div>
         </div>

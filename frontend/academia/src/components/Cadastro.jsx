@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Botao"
+import style from "./Botao.module.css"
 
 function Cadastro() {
     const [nome, setNome] = useState("");
