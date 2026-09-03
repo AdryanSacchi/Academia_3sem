@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Login from "./components/Login";
 import "./App.css";
-import Cadastro from "./components/Cadastro";
 import Aparelhos from "./components/Aparelhos";
 
 function App() {

@@ -7,6 +7,7 @@ function Login({ onLoginSucesso }) {
     const [senha, setSenha]= useState("");
     
     async function ascLogin(){
+        setMensagem("");
         try {
             const res = await fetch(`http://localhost:8080/usuarios/login`, {
                 method: "POST",
@@ -37,8 +38,8 @@ function Login({ onLoginSucesso }) {
 
     return (
         <div>
-            <p className="fontGym">Titulo</p>
-            <p className="fontGym2">Titulo 2</p><br /><br />
+            <p className="fontGym">Gym</p>
+            <p className="fontGym2">System</p><br /><br />
 
             <div className="cardLogin">
                 <label className="textoCard">Email:</label>
@@ -46,7 +47,13 @@ function Login({ onLoginSucesso }) {
                 <label className="textoCard" >Senha:</label>
                 <input type="password" onChange={(e) => setSenha(e.target.value)} /><br />
                 <Botao variante="primario" onClick={ascLogin}>Entrar</Botao>
+                {mensagem && (
+                    <p style={{ color: "#ff4d4d", fontSize: "1", marginTop: "10px" }}>
+                        {mensagem}
+                    </p>
+                )}
             </div>
+                
         </div>
     )
 }

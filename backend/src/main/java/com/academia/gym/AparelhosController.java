@@ -21,7 +21,7 @@ public class AparelhosController {
 
     @GetMapping
     public ResponseEntity<List<Aparelhos>> listarTodos() {
-        String sql = "SELECT id, nome, grupo_muscular AS grupoMuscular, status FROM aparelho";
+        String sql = "SELECT MIN (id), nome, COUNT(*) AS quantidade FROM aparelho GROUP BY nome ORDER BY nome";
         List<Aparelhos> aparelhos = jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper<>(Aparelhos.class)
         );

@@ -23,15 +23,14 @@ function Aparelhos() {
         }
     }
 
-    async function cadastrarAparelho(e) {
-
-        if (!nome) {
+    async function cadastrarAparelho() {
+        if (!nome.trim()) {
             setMensagem("Digite o nome do aparelho.");
             return;
         }
 
         try {
-            const res = await fetch("http://localhost:8080/aparelhos/cadastrar", {
+            const res = await fetch("http://localhost:8080/aparelhos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nome: nome })
@@ -52,7 +51,8 @@ function Aparelhos() {
     return (
         <div className={styles.container}>
             <h2 className={styles.titulo}>Gestão de Aparelhos</h2>
-            <form onSubmit={cadastrarAparelho} className={styles.card}>
+            
+            <div className={styles.card}>
                 <h3>Novo Aparelho</h3>
                 
                 <label className={styles.label}>Nome do Aparelho:</label>
@@ -63,12 +63,12 @@ function Aparelhos() {
                     onChange={(e) => setNome(e.target.value)} 
                 />
                 
-
-                
-                <Botao onClick={cadastrarAparelho} tipo="submit" variante="primario">Salvar</Botao>
+                <Botao onClick={cadastrarAparelho} tipo="button" variante="primario">
+                    Salvar
+                </Botao>
                 
                 {mensagem && <p className={styles.mensagem}>{mensagem}</p>}
-            </form>
+            </div>
 
             <div className={styles.card}>
                 <h3>Lista de Aparelhos</h3>
@@ -78,7 +78,7 @@ function Aparelhos() {
                     <ul className={styles.lista}>
                         {aparelhos.map((item) => (
                             <li key={item.id} className={styles.item}>
-                                {item.nome}
+                            {item.nome} {item.quantidade > 1 ? ` (${item.quantidade}x)` : ""}
                             </li>
                         ))}
                     </ul>

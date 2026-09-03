@@ -9,6 +9,7 @@ public class Aparelhos {
     @JsonProperty("grupoMuscular")
     private String grupoMuscular;
     private String status;
+    private Integer quantidade;
 
     public Aparelhos() {}
 
@@ -31,4 +32,7 @@ public class Aparelhos {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public Integer getQuantidade() { return quantidade; }
+    public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 }
