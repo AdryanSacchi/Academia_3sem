@@ -1,25 +1,26 @@
 package com.academia.gym;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Aparelhos {
 
     private Integer id;
     private String nome;
-    @JsonProperty("grupoMuscular")
     private String grupoMuscular;
     private String status;
     private Integer quantidade;
+    private String marca;
+    private Integer pesoMax;
 
     public Aparelhos() {}
 
-    public Aparelhos(Integer id, String nome, String grupoMuscular, String status) {
+    public Aparelhos(Integer id, String nome, String grupoMuscular, String status, Integer quantidade, String marca, Integer pesoMax) {
         this.id = id;
         this.nome = nome;
         this.grupoMuscular = grupoMuscular;
         this.status = status;
+        this.quantidade = quantidade;
+        this.marca = marca;
+        this.pesoMax = pesoMax;
     }
-
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -35,4 +36,10 @@ public class Aparelhos {
 
     public Integer getQuantidade() { return quantidade; }
     public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
+
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+
+    public Integer getPesoMax() { return pesoMax; }
+    public void setPesoMax(Integer pesoMax) { this.pesoMax = pesoMax; }
 }

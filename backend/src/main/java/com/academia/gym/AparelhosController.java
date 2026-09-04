@@ -21,7 +21,14 @@ public class AparelhosController {
 
     @GetMapping
     public ResponseEntity<List<Aparelhos>> listarTodos() {
-        String sql = "SELECT MIN (id), nome, COUNT(*) AS quantidade FROM aparelho GROUP BY nome ORDER BY nome";
+        String sql = "SELECT MIN(id) AS id, nome, " +
+                "MAX(grupo_muscular) AS grupoMuscular, " +
+                "MAX(status) AS status, " +
+                "MAX(marca) AS marca, " +
+                "MAX(peso_max) AS pesoMax, " +
+                "SUM(COALESCE(quantidade, 1)) AS quantidade " +
+                "FROM aparelho GROUP BY nome ORDER BY nome";
+
         List<Aparelhos> aparelhos = jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper<>(Aparelhos.class)
         );
@@ -32,18 +39,18 @@ public class AparelhosController {
 
 
     @PostMapping
-    public ResponseEntity<Void> cadastrar(
-            @RequestBody Aparelhos novoAparelhos) {
-        if (
-                novoAparelhos.getNome() == null || novoAparelhos.getNome().isBlank()) {
+    public ResponseEntity<Void> cadastrar(@RequestBody Aparelhos novoAparelhos) {
+        if (novoAparelhos.getNome() == null || novoAparelhos.getNome().isBlank()) {
             return ResponseEntity.status(400).build();
         }
-
-        String sql = "INSERT INTO aparelho (nome, grupo_muscular, status) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO aparelho (nome, grupo_muscular, status, quantidade, marca, peso_max) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 novoAparelhos.getNome(),
                 novoAparelhos.getGrupoMuscular(),
-                novoAparelhos.getStatus()
+                novoAparelhos.getStatus(),
+                novoAparelhos.getQuantidade() != null ? novoAparelhos.getQuantidade() : 1,
+                novoAparelhos.getMarca(),
+                novoAparelhos.getPesoMax()
         );
 
         return ResponseEntity.status(201).build();
